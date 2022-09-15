@@ -1,21 +1,17 @@
-import { invoke } from "@tauri-apps/api/tauri";
-import Button from "@mui/material/Button";
-import { Paper, Typography } from "@mui/material";
-import Navbar from "./components/nav";
-import { useEffect } from "react";
-import NexusModManager from "./api";
+import styled from "@emotion/styled";
+import TopBar from "./components/TopBar";
 
-function App() {
-  useEffect(() => {
-    const nexusApi = new NexusModManager();
-    nexusApi.getModInfoForGame("valheim", 1000);
-  }, []);
+const AppWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
+export default function App() {
   return (
     <>
-      <Navbar />
+      <AppWrapper>
+        <TopBar />
+      </AppWrapper>
     </>
   );
 }
-
-export default App;

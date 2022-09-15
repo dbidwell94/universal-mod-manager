@@ -9,11 +9,26 @@ import "@fontsource/roboto/700.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Provider } from "react-redux";
+import { css, Global } from "@emotion/react";
 import store from "./state";
+
+const globalStyle = css`
+  body {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    #root {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+  }
+`;
 
 function AppWrapper() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme({
+    spacing: 10,
     palette: {
       mode: prefersDarkMode ? "dark" : "light",
     },
@@ -24,6 +39,7 @@ function AppWrapper() {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <Global styles={globalStyle} />
           <App />
         </ThemeProvider>
       </Provider>
@@ -34,5 +50,5 @@ function AppWrapper() {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AppWrapper />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

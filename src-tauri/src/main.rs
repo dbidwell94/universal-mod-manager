@@ -4,8 +4,8 @@
 )]
 
 use nexus::{models::ModInfo, NexusModsApiClient};
-
 mod nexus;
+mod steam_lib;
 
 #[tauri::command]
 async fn get_mod_info_for_game(game_name: &str, mod_id: usize) -> Result<ModInfo, String> {
